@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-12 login-title">
+                USER REGISTRATION
+            </div>
+
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form #registrationForm="ngForm" (ngSubmit)="registerUser()">
+                       
+                        <div style="display: flex; justify-content: space-between;">
+                            <div class="form-group">
+                               
+                                <input type="text" class="form-control" placeholder="First name" required 
+                                    name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel"
+                                    [class.is-invalid]="firstName.invalid && firstName.touched">
+                                <div *ngIf="firstName.errors && (firstName.invalid && firstName.touched)">
+                                    <small class="text-danger" *ngIf="firstName.errors.required">Cannot be blank</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                               
+                                <input type="text" class="form-control" placeholder="Last name" required name="lastName"
+                                    [(ngModel)]="user.lastName" #lastName="ngModel"
+                                    [class.is-invalid]="lastName.invalid && lastName.touched">
+                                <div *ngIf="lastName.errors && (lastName.invalid && lastName.touched)">
+                                    <small class="text-danger" *ngIf="lastName.errors.required">Cannot be blank</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">EMAIL</label>
+                            <input type="email" class="form-control" placeholder="Enter your email" required pattern="/^[^@]+@[^@]+\.[^@]{2}[^@]*$/"
+                                name="email" [(ngModel)]="user.email" #email="ngModel"
+                                [class.is-invalid]="email.invalid && email.touched">
+
+                            <div *ngIf="email.errors && (email.invalid && email.touched)">
+                                <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+                                <small class="text-danger" *ngIf="email.errors.pattern">Enter a valid email</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label">PASSWORD</label>
+                            <input type="password" class="form-control" placeholder="enter your password" required
+                                name="password" [(ngModel)]="user.password" #password="ngModel"
+                                [class.is-invalid]="password.invalid && password.touched">
+                            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is
+                                required </small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Password Confirmation</label>
+                            <input type="password" class="form-control"  placeholder="Re-type password" required
+                                name="password" [(ngModel)]="user.password" #password="ngModel"
+                                [class.is-invalid]="password.invalid && password.touched">
+                            <small class="text-danger"
+                                [class.d-none]="(password.value == password.value) || password.untouched">password
+                                must be the same</small>
+                        </div>
+
+                        <div class="col-lg-12 loginbttm">
+                            <div class="col-lg-6 login-btm login-text">
+                                <!-- Error Message -->
+                            </div>
+                            <div class="col-lg-6 login-btm login-button">
+                                <button [disabled]="registrationForm.form.invalid" type="submit" class="btn btn-success">SIGN UP</button>
+                                <button class="btn btn-warning" style="margin-left: 20px;"><a href="/login">LOGIN</a></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+    </div>

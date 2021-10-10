@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-12 login-title">
+                USER LOGIN
+            </div>
+
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form #loginForm="ngForm" (ngSubmit)="loginUser()">
+                        <div><small class="text-danger">{{message}}</small></div>
+                        <div class="form-group">
+                            <label class="form-control-label">EMAIL</label>
+                            <input type="email" class="form-control" placeholder="Enter your email" required pattern="/^[^@]+@[^@]+\.[^a-z-A-Z]{2,4}$/"
+                           name="email" [(ngModel)]="user.email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
+                           <!-- <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required </small> -->
+                           <div *ngIf="email.errors && (email.invalid && email.touched)">
+                               <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+                               <small class="text-danger" *ngIf="email.errors.pattern">Enter a valid email</small>
+                           </div>
+                           <!-- <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                            <p>email address is required</p>
+                           </div> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">PASSWORD</label>
+                            <input type="password" class="form-control" i placeholder="enter your password" required
+                           name="password" [(ngModel)]="user.password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched">
+                           <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required </small>
+                        </div>
+ 
+                        <div class="col-lg-12 loginbttm">
+                            <div class="col-lg-6 login-btm login-text">
+                                <!-- Error Message -->
+                            </div>
+                            <div class="col-lg-6 login-btm login-button" style="justify-content: space-between;">
+                                <button [disabled]="loginForm.form.invalid"  type="submit" class="btn btn-success" id="btn-login">LOGIN</button>
+                                <button class="btn btn-warning" style="margin-left: 20px; text-decoration: none;"><a href="/register">SIGN UP</a></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+    </div>
